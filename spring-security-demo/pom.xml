@@ -29,8 +29,28 @@
 	<dependency>
     	<groupId>org.springframework.security.oauth</groupId>
     	<artifactId>spring-security-oauth2</artifactId>
-    	<version>2.5.0.RELEASE</version>
-	</dependency>						
+    	<version>2.3.0.RELEASE</version>    	
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
+	<dependency>
+    	<groupId>org.mybatis.spring.boot</groupId>
+    	<artifactId>mybatis-spring-boot-starter</artifactId>
+    	<version>2.1.1</version>
+	</dependency>
+	<dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
+	<dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>    
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-jwt</artifactId>
+		<version>1.0.9.RELEASE</version>
+	</dependency> 						
   </dependencies>
   
   <build>
