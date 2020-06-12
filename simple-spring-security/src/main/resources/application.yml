@@ -1,2 +1,10 @@
 server:
   port: 7700
+  
+ #Override the default user ("user") and password ("auto-generated")
+ 
+spring:
+  security:
+    user: 
+      name: XYZ
+      password: 79395d33-4e9c-470a-9612-2e8b6bc20e68
