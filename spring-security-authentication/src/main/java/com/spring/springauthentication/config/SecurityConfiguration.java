@@ -59,7 +59,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication()
 		.dataSource(dataSource)
-		.withDefaultSchema()
+		//Creating schema and setup data in resources so we dont need default schema and data
+		/*.withDefaultSchema()
 		.withUser(
 				User.withUsername("USER")
 					.password("123")
@@ -68,7 +69,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.withUser(User.withUsername("ADMIN")
 				.password("123")
 				.roles("ADMIN","USER")
-				);
+				)*/;
 		
 	}
 	
