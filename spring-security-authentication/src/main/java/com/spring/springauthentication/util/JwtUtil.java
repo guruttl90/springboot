@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
 import com.spring.springauthentication.dto.MyUserDetails;
 
 import io.jsonwebtoken.Claims;
@@ -12,8 +16,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 //Basic idea for Create, Validate JWT token
+@Service
 public class JwtUtil {
-
+	private static final Logger log = LoggerFactory.getLogger(JwtUtil.class);
 	public String generateToken(MyUserDetails myUserDetails) {
 
 		Map<String, Object> claims = new HashMap<>();		
@@ -32,26 +37,32 @@ public class JwtUtil {
 	}
 	
 	private <T> T extractClaim(String token, Function<Claims,T> claimsResolver){
-		final Claims claims = extractAllClaims(token);
+		final Claims claims = extractAllClaims(token);			
 		return claimsResolver.apply(claims);
 		
 	}
 
-	private String extractUsername(String token) {		
+	public String extractUsername(String token) {		
 		return extractClaim(token,Claims::getSubject);
 	}
 	
 	
 	private Date extractExpiration(String token){
-		return extractClaim(token,Claims::getExpiration);
+		Date date = extractClaim(token,Claims::getExpiration);
+		log.info(" extractExpiration : "+date);
+		return date;
 	}
 	
 	private boolean isTokenExpired(String token) {		
-		return extractExpiration(token).before(new Date());
+		boolean isTokenExpired = extractExpiration(token).before(new Date());
+		log.info(" isTokenExpired : "+isTokenExpired);
+		return isTokenExpired;
 	}
 	
 	public boolean validateToken(String token,MyUserDetails myUserDetails) {
 		final String username = extractUsername(token);
-		return(username.equals(myUserDetails.getUsername()) && isTokenExpired(token));		
+		boolean isvalidateToken = (username.equals(myUserDetails.getUsername()) && !isTokenExpired(token));
+		log.info(" isvalidateToken : "+isvalidateToken);
+		return isvalidateToken;		
 	}
 }
