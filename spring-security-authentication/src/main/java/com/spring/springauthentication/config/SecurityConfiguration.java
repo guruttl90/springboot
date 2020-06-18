@@ -1,7 +1,5 @@
 package com.spring.springauthentication.config;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -51,11 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	//so we need to configure the datasource 
 	
 	
-	@Autowired
-	DataSource dataSource; //We are using H2 embedded database
-	
-	
-	@Override
+	/*@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication()
 		.dataSource(dataSource)
@@ -69,15 +63,42 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.withUser(User.withUsername("ADMIN")
 				.password("123")
 				.roles("ADMIN","USER")
-				)*/;
+				);
 		
-	}
+	}*/ 
 	
+
+
+/*@Override
+protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+	auth.jdbcAuthentication()
+	.dataSource(dataSource)	
+	//inform the datasource about the username,password and authority if using our own table
+	.usersByUsernameQuery("select username,password,enabled from users where username = ?")
+	.authoritiesByUsernameQuery("select username,authority from users where username = ?")
+	;
+	
+}*/
+	
+	
+	//Here we autowire the userDetailsService interface so we need instance to load the instance
+	//so we create a class Name MyUserDetailsService it implments UserDetailsService and that class act as a service class so it automatically loaded
+	
+	@Autowired
+	UserDetailsService userDetailsService;
+	
+	//To connect mysql database and retrieve the user information for authentication
+	//no need of H2 embedded database, we can use our own database and password
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService);
+	}
+		
 	
 	@Bean  //We are not encoding the password 
 	public PasswordEncoder getPasswordEncoder() {
 		return NoOpPasswordEncoder.getInstance();
 		
-	}	
-	
+	}
+		
 }
