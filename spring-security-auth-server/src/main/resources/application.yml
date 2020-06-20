@@ -1,0 +1,8 @@
+server:
+  port: 6000  
+  context-path: /auth
+
+security:
+  basic:
+    enabled: false  
+

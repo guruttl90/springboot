@@ -1,0 +1,13 @@
+server:
+  port: 8001
+  
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:8000/validateUser                                              
+  basic:
+    enabled: false
+    
+logging:
+  level:
+    org.springframework.boot.autoconfigure.security: TRACE
