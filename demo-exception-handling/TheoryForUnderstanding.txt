@@ -1,0 +1,35 @@
+difference between checked and runtime exception in java
+	Main difference between RuntimeException and checked Exception 
+	
+		It is mandatory to provide try-catch or try finally block to handle checked Exception and failure to do so will result in compile-time error, 
+		while in case of RuntimeException this is not mandatory.
+		Unchecked means compiler doesn't check and Checked means compiler checks for exception handling.
+		
+Interview based questions
+
+	Runtime Exception vs Checked Exception in Java
+		 
+	Question:
+	========
+	While creating custom Exception should you make them unchecked by deriving from java.lang.RuntimeException or checked? 
+		well, this decision is purely yours though some thoughts are available in the Java community. 
+	I mostly see JDK when in doubt and try to follow practices available in JDK. 
+	Solution:
+	========
+		If a method is likely to fail and chances of failure is more than 50% it should throw Checked Exception to ensure alternate processing in case it failed. 
+	Another thought is that programming errors should be unchecked and derived from RuntimeException e.g. java.lang.NullPointerException. Checked Exception also 
+	enforces proper handling of the error condition, though it's theoretical in nature and many programs simply appease compiler by providing try catch block in-
+	stead of correctly handling exception in the catch block. 
+
+	Question
+	========
+		Disadvantage of checked exception:
+	Solution:
+	========
+			One the disadvantage of checked exception over runtime exception is that it makes your code ugly by adding boilerplate code in form of try-catch-finally block. 
+		Though this issue is addressed at some extent by improved Exception handling in JDK 7 by introducing automatic resource management or ARM blocks and allowing to 
+		catch multiple Exception in same catch block.
+
+	
+Refer:
+	https://www.java67.com/2012/12/difference-between-runtimeexception-and-checked-exception.html#:~:text=RuntimeException%20vs%20Checked%20Exception%20in%20Java&text=Main%20difference%20between%20RuntimeException%20and,RuntimeException%20this%20is%20not%20mandatory.
