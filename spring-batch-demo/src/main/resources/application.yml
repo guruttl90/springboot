@@ -1,0 +1,6 @@
+server:
+  port: 8081
+  
+spring:  batch:    job:      enabled: false
+      
+input: file:C:/Users/guru/git/springboot/spring-batch-demo/src/main/resources/users.csv
