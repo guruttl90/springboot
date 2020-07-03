@@ -18,11 +18,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.springbatchdemo.model.User;
 
 @Configuration
 @EnableBatchProcessing
+//@EnableJpaRepositories(
+	//    basePackages = "com.springbatchdemo.repository")//Enabling the JPA Repositories by defining the package name of the user repository
 public class SpringBatchConfig {
 	
 	

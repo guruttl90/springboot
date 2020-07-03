@@ -2,5 +2,22 @@ server:
   port: 8081
   
 spring:  batch:    job:      enabled: false
-      
+  datasource:
+    jdbcUrl: "jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE"
+    driver-class-name: org.h2.Driver        username: sa
+    password:     #hikari:
+      #jdbc-url: "jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE"
+      #driver-class-name: org.h2.Driver      #username: sa      #password: 
+    jpa:
+      #hibernate:
+        #ddl-auto: update
+        database-platform: org.hibernate.dialect.H2Dialect 
+  second-datasource:
+    jdbcUrl: jdbc:mysql://localhost:3306/nmapplication?autoReconnect=true&useSSL=false
+    data-source-class-name: com.mysql.cj.jdbc.MysqlDataSource
+    username: nmapplication
+    password: nmapplication
+       
 input: file:C:/Users/guru/git/springboot/spring-batch-demo/src/main/resources/users.csv
+
+logging:  level:    org.springframework.context.annotation.Configuration: trace
