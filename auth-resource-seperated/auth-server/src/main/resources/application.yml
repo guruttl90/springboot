@@ -5,3 +5,6 @@ security:
   basic:
     enabled: false
   
+logging:
+  level:
+    org.springframework.boot.autoconfigure.security: TRACE

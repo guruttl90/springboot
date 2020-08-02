@@ -9,10 +9,13 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends WebSecurityConfigurerAdapter{
+	
+	
 	@Bean
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {	
@@ -36,4 +39,15 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter{
 		return NoOpPasswordEncoder.getInstance();
 	}
 	
+	@Configuration
+	public static class ResourceServer extends ResourceServerConfigurerAdapter{
+		@Override
+		public void configure(HttpSecurity http) throws Exception {
+			http			
+	        .requestMatchers().antMatchers("/t*").and()
+	        .authorizeRequests()
+	        .anyRequest().access("#oauth2.hasScope('')");
+	         
+		}
+	}	
 }
