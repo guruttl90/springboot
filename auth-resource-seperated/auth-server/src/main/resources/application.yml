@@ -1,0 +1,10 @@
+server:
+  port: 8000
+
+security:
+  basic:
+    enabled: false
+  
+logging:
+  level:
+    org.springframework.boot.autoconfigure.security: TRACE

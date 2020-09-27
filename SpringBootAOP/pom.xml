@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.aop</groupId>
+  <artifactId>SpringBootAOP</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Sping boot AOP implementation</name>
+  
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.3.0.RELEASE</version>
+    <relativePath/>    
+  </parent>      
+  <!-- relativePath -->  
+<!-- The relative path, if not given explicitly, defaults to .., i.e. the pom in the parent directory of the current project. 
+So Maven checks whether a) there is a pom file in that directory and b) that pom file contains the same coordinates as stated in the parent definition of the current project.
+If a) and b) are true, that pom file is used as the parent for the resolving of the effective pom.
+If a) is true, and b) is false, a warning is given, because this usually points to a misconfigured project (as in your case) and the pom is ignored. -->
+<!-- https://stackoverflow.com/questions/37062491/maven-complaining-about-parent-relative-path -->
+<dependencies>
+	<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-web</artifactId>   
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop -->
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-aop</artifactId>	    
+	</dependency>			
+</dependencies>
+</project>
