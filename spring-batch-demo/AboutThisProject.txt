@@ -1,0 +1,3 @@
+Facing issue after adding second datasource
+
+Remove the second datasource and remove the datasource config then it will work fine

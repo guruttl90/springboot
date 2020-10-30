@@ -1,0 +1,13 @@
+server:
+  port: 6001
+  
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      authorized-grant-types: client_credentials
+      client-id: 
+      client-secret:
+      access-token-uri: http://localhost:6000/auth/oauth/authorize
+      user-authorization-uri: http://localhost:6000/auth/check
